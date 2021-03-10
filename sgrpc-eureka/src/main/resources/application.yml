@@ -1,0 +1,13 @@
+#端口
+server:
+  port: 8761
+#本服务名字
+spring:
+  security:
+    user:
+      name: admin
+      password: 123456
+  profiles:
+    active: dev
+  application:
+    name: eureka-server

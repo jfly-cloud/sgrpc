@@ -1,0 +1,60 @@
+buildscript {
+	repositories {
+		mavenCentral()
+		jcenter()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:2.4.2")
+	}
+}
+
+allprojects {
+	group = 'com.jcloud'
+	version = '1.0.0'
+	//指定编码格式
+	tasks.withType(JavaCompile) {
+		options.encoding = "UTF-8"
+	}
+}
+
+// 子模块/项目的统一配置
+subprojects {
+	apply plugin: 'java-library'
+	apply plugin: 'java'
+	apply plugin: 'idea'
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
+	// 指定JDK版本
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+	ext {
+		springCloudVersion = '2020.0.1'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		implementation 'org.springframework.boot:spring-boot-starter'
+		compile 'org.springframework.boot:spring-boot-starter-log4j2'
+		runtimeOnly 'mysql:mysql-connector-java'
+		compileOnly 'org.projectlombok:lombok:1.18.16'
+		annotationProcessor 'org.projectlombok:lombok:1.18.16'
+		implementation 'org.apache.commons:commons-lang3:3.11'
+		implementation 'commons-codec:commons-codec:1.15'
+		implementation 'com.lmax:disruptor:3.4.2'
+		implementation 'org.apache.commons:commons-pool2:2.8.0'
+		implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+		implementation 'org.springframework.boot:spring-boot-starter-actuator'
+		implementation 'org.springframework.boot:spring-boot-starter-aop'
+	}
+	configurations {
+		all*.exclude module: 'spring-boot-starter-logging'
+		all*.exclude module: "logback-classic"
+	}
+
+	dependencyManagement {
+		imports {
+			mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+		}
+	}
+}
