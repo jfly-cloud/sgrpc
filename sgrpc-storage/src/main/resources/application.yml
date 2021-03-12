@@ -1,0 +1,17 @@
+#端口
+server:
+  port: 8081
+#本服务名字
+spring:
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
+  profiles:
+    active: dev
+  application:
+    name: storage-server
+# grpc  configure
+grpc:
+  server:
+    port: 9091

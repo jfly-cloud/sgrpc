@@ -1,0 +1,11 @@
+
+dependencies {
+    implementation ('com.alibaba.cloud:spring-cloud-alibaba-seata:2.2.0.RELEASE'){
+        exclude group: 'io.seata', module: 'seata-all'
+    }
+    implementation 'io.seata:seata-all:1.4.0'
+    implementation 'com.baomidou:mybatis-plus-boot-starter:3.4.2'
+    implementation 'com.baomidou:mybatis-plus-generator:3.4.1'
+    implementation 'org.apache.velocity:velocity-engine-core:2.3'
+    implementation project(':sgrpc-service')
+}

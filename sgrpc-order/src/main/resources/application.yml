@@ -1,0 +1,27 @@
+#端口
+server:
+  port: 8080
+#本服务名字
+spring:
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
+  profiles:
+    active: dev
+  application:
+    name: order-server
+# grpc  configure
+grpc:
+  server:
+    port: 9099
+  client:
+    # 服务名必须要配置正确
+    account-server:
+      enableKeepAlive: true
+      keepAliveWithoutCalls: true
+      negotiationType: plaintext
+    storage-server:
+      enableKeepAlive: true
+      keepAliveWithoutCalls: true
+      negotiationType: plaintext

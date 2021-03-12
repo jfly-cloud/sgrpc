@@ -1,0 +1,48 @@
+spring:
+  config:
+    name: dev
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    password: root12345
+    poolName: web
+    url: jdbc:mysql://192.168.102.82:3306/mol?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf-8
+    username: root
+mybatis-plus:
+  configuration:
+    cache-enabled: true
+    lazyLoadingEnabled: true
+    map-underscore-to-camel-case: true
+    multipleResultSetsEnabled: true
+  global-config:
+    db-config:
+      id-type: assign_id
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  typeAliasesPackage: com.sgrpc.order.entity
+server:
+  tomcat:
+    accept-count: 100
+    accesslog:
+      directory: logs/access/
+      enabled: true
+      file-date-format: .yyyy-MM-dd
+      pattern: '%t [%I] %{X-Forwarded-For}i %l %u %r %s %b %D'
+      prefix: access_log
+      suffix: .log
+    connection-timeout: 13000
+    max-connections: 20000
+    threads:
+      max: 1200
+      min-spare: 150
+#注册的地址
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 15 #服务过期时间配置
+    lease-renewal-interval-in-seconds: 5 #服务刷新时间配置
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone:  http://admin:123456@127.0.0.1:8761/eureka
+    registry-fetch-interval-seconds: 5 #client刷新本地缓存时间

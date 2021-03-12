@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+// 引入外部的proto对象
+import "google/protobuf/empty.proto";
+
+option java_multiple_files = true;
+option java_package = "com.sgrpc.proto";
+option java_outer_classname = "OrderProto";
+
+// The greeting service definition.
+service Simple {
+
+  rpc adecrease (AccountRequest) returns (google.protobuf.Empty) {
+  }
+
+  rpc sdecrease (StorageRequest) returns (google.protobuf.Empty) {
+  }
+
+
+}
+
+// The request message containing the user's name.
+message AccountRequest {
+   int64 userId=1;
+   DecimalValue money=2;
+}
+
+
+// The request message containing the user's name.
+message StorageRequest {
+  int64 productId=1;
+  int32 count=2;
+}
+
+message DecimalValue {
+  uint32 scale = 1;
+  uint32 precision = 2;
+  bytes value = 3;
+}
