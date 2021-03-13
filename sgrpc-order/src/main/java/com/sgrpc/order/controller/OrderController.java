@@ -26,8 +26,14 @@ public class OrderController {
     private IOrderService orderService;
 
     @PostMapping("/create/v1")
-    public void insertEmailLink(@RequestBody Order order) {
+    public void create(@RequestBody Order order) {
         orderService.create(order);
     }
+
+    @PostMapping("/update/v1")
+    public void update(@RequestBody Order order) {
+        orderService.update(order.getUserId(), order.getMoney(), order.getStatus());
+    }
+
 }
 

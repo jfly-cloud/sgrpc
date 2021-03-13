@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -60,6 +61,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
      * 修改订单状态
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void update(Long userId,BigDecimal money,Integer status) {
         LOGGER.info("修改订单状态，入参为：userId={},money={},status={}",userId,money,status);
         Order order=new Order();
@@ -67,5 +69,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         order.setMoney(money);
         order.setStatus(status);
         baseMapper.update(order,new QueryWrapper<Order>().eq("user_id",userId));
+        int i=1/0;
     }
 }
