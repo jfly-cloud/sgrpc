@@ -21,7 +21,7 @@ public class GrpcServerService extends SimpleGrpc.SimpleImplBase {
     public void adecrease(AccountRequest req, StreamObserver<Empty> responseObserver) {
         LOGGER.info("------->扣减账户开始account中");
         //模拟异常，全局事务回滚
-        int i= 1/0;
+        //int i= 1/0;
         IAccountService service = SpringUtil.getBean(IAccountService.class);
         MathContext mc = new MathContext(req.getMoney().getPrecision());
         BigDecimal deserialized = new BigDecimal(new java.math.BigInteger(req.getMoney().getValue().toByteArray()),

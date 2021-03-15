@@ -69,6 +69,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         order.setMoney(money);
         order.setStatus(status);
         baseMapper.update(order,new QueryWrapper<Order>().eq("user_id",userId));
-        int i=1/0;
+        //int i=1/0;
     }
 }
